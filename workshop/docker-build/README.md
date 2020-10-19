@@ -6,6 +6,27 @@ To define the build process OpenShift uses a `BuildConfig`. The `Docker build` s
 
 This lab guides you through the steps to implement the Docker build strategy on OpenShift to deploy an example application called `spring-boot-app`.
 
+### Pre-requirements
+
+For this tutorial, you need access to among other aDocker and oc client with a Docker Engine. I strongly recommend to use the terminal that is part of the Theia Cloud IDE (with Docker) environment at https://labs.cognitiveclass.ai.
+
+To access the terminal that is part of Theia — Cloud IDE (With Docker) at Cognitive Class:
+
+1. Go to https://labs.cognitiveclass.ai ,
+1. Sign up for CognitiveClass.ai using an IBM id or use your favorite social login,
+1. Login with your IBM Id or social login,
+1. Select Theia - Cloud IDE (With Docker),
+1. Select Terminal > New Terminal.
+1. Test you have access to the required clients,
+
+    ```console
+    oc version
+    git version
+    mvn -v
+    docker version
+    curl --version
+    ```
+
 ### Get Source Code
 
 1. Clone the `spring-boot-app` repository,
