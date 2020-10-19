@@ -1,19 +1,18 @@
 
-## Workshop Title
+## OpenShift Builds
 
-Welcome to our workshop! In this workshop we'll be using foo to accomplish bar. The goals of this workshop are:
 
-* Goals!
-* Have fun!
 
 ### About this workshop
 
 The introductory page of the workshop is broken down into the following sections:
 
-* [Agenda](#agenda)
-* [Compatibility](#compatibility)
-* [Technology Used](#technology-used)
-* [Credits](#credits)
+- [OpenShift Builds](#openshift-builds)
+  - [About this workshop](#about-this-workshop)
+- [Agenda](#agenda)
+- [Compatibility](#compatibility)
+- [Technology Used](#technology-used)
+- [Credits](#credits)
 
 ## Agenda
 

@@ -4,18 +4,16 @@
 <!-- All headings MUST be THREE hashmarks (###) -->
 <!-- Indented bullets (4 spaces) will make the first line be a section -->
 
-### Getting Started
+### Get Started
 
 * [Pre-work](pre-work/README.md)
 
-### Some Heading
+### Build Strategies
 
-* [Some Section](some-section/README.md)
-    * [Some Exercise](some-exercise/README.md)
-
-### Workshop Resources
-
-* [Instructor Guide](admin-guide/README.md)
+* [Docker build](docker-build/README.md)
+* [Source-to-Image (S2I)](https://github.com/IBM/s2i-open-liberty-workshop)
+* [Pipeline build](pipeline-build/README.md)
+* [Tekton Deployment](tekton-deployment/README.md)
 
 ### Resources
 

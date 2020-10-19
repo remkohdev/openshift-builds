@@ -1,0 +1,85 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: spring-boot-app
+  namespace: oc-docker-build
+  annotations:
+    description: "Spring Boot App"
+    tags: spring-boot, java
+parameters:
+  - name: NAMESPACE_NAME
+    description: Name of the namespace
+    required: true
+    value: oc-docker-build
+  - name: APPLICATION_NAME
+    description: Name of the application image
+    required: true
+    value: spring-boot-app
+  - name: APPLICATION_IMAGE
+    description: Full location of the application image
+    required: true
+    value: quay.io/remkohdev/spring-boot-app
+  - name: APPLICATION_PORT
+    description: Port to access the application image
+    value: "8080"
+    required: true
+labels:
+  app: ${APPLICATION_NAME}
+objects:
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    name: ${APPLICATION_NAME}
+    namespace: ${NAMESPACE_NAME}
+    labels:
+      app: ${APPLICATION_NAME}
+  spec:
+    replicas: 3
+    selector:
+      app: ${APPLICATION_NAME}
+    strategy:
+      type: Rolling
+    template:
+      metadata:
+        labels:
+          app: ${APPLICATION_NAME}
+      spec:
+        containers:
+        - image: ${APPLICATION_IMAGE}
+          name: ${APPLICATION_NAME}
+          imagePullPolicy: Always
+          ports:
+          - containerPort: ${APPLICATION_PORT}
+            protocol: TCP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: ${APPLICATION_NAME}
+    name: ${APPLICATION_NAME}
+    namespace: ${NAMESPACE_NAME}
+  spec:
+    ports:
+    - name: tcp-port
+      protocol: TCP
+      port: ${APPLICATION_PORT}
+      targetPort: ${APPLICATION_PORT}
+    selector:
+      app: ${APPLICATION_NAME}
+      deploymentconfig: ${APPLICATION_NAME}
+    type: ClusterIP
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    labels:
+      app: ${APPLICATION_NAME}
+    name: ${APPLICATION_NAME}
+    namespace: ${NAMESPACE_NAME}
+  spec:
+    port:
+      targetPort: tcp-port
+    to:
+      kind: Service
+      name: ${APPLICATION_NAME}
+      weight: 100
+    wildcardPolicy: None
